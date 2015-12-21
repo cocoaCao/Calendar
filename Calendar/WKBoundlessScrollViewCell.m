@@ -50,15 +50,31 @@
 //                        label.backgroundColor = [UIColor blueColor];
     [self addSubview:label];
     for (int i = 0; i < cellDateModel.monthDays; i++) {
-        if (i == 0) {
-            
-        }
+        
         DateModel *dateModel = cellDateModel.dateModelArray[i];
         NSInteger column =  dateModel.weekday;
         NSInteger row = (i+cellDateModel.drawDayBeginIndex)/7;
+        
         DateView *dateView = [[DateView alloc] initWithFrame:CGRectMake(column*width+10, row*(width+15)+5+30+5, width, width)];
         [dateView fillDate:dateModel];
         [self addSubview:dateView];
+        
+        
+        if (i == 0) {
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake((cellDateModel.beginWeekDay-1)*width+10, row*(width+15)+5+30+4, self.frame.size.width-(cellDateModel.beginWeekDay-1)*width-20, 0.5)];
+            view.backgroundColor = [UIColor lightGrayColor];
+            [self addSubview:view];
+        }
+        else
+        {
+            if ((i+cellDateModel.drawDayBeginIndex)%7 == 0) {
+                UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, row*(width+15)+5+30+4, self.frame.size.width-20, 0.5)];
+                view.backgroundColor = [UIColor lightGrayColor];
+                [self addSubview:view];
+            }
+        }
+        
+        
     }
 }
 

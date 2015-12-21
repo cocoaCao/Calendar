@@ -460,7 +460,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Calendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wkcao.Calendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infobird.LingNiao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8b5b5c0f-87c0-4ace-9794-9b8c31dcdd2d";
 			};
@@ -473,7 +473,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Calendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wkcao.Calendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infobird.LingNiao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8b5b5c0f-87c0-4ace-9794-9b8c31dcdd2d";
 			};
