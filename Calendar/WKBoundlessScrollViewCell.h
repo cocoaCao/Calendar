@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class CellDateModel;
+
+
 @interface WKBoundlessScrollViewCell : UIView
+
 
 @property(nonatomic,copy)NSString *identifier;
 @property(nonatomic,assign)NSInteger deviation;
 @property(nonatomic,strong)UILabel *label;
 -(instancetype)initWithIdentifier:(NSString *)identifier;
+-(void)fillDate:(CellDateModel *)cellDateModel;
+
+
 @end

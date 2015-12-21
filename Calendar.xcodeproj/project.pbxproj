@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		496B35E41C244E710058A683 /* DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 496B35E31C244E710058A683 /* DateTools.m */; };
+		496B35E71C2454550058A683 /* CellDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 496B35E61C2454550058A683 /* CellDateModel.m */; };
+		497C1B721C243975001F4D71 /* DateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 497C1B711C243975001F4D71 /* DateView.m */; };
+		497C1B751C243C02001F4D71 /* DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 497C1B741C243C02001F4D71 /* DateModel.m */; };
 		498C26B31C1FE3BA00710612 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 498C26B21C1FE3BA00710612 /* main.m */; };
 		498C26B61C1FE3BA00710612 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 498C26B51C1FE3BA00710612 /* AppDelegate.m */; };
 		498C26B91C1FE3BA00710612 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498C26B81C1FE3BA00710612 /* ViewController.m */; };
@@ -16,6 +20,8 @@
 		498C26CC1C1FE3BB00710612 /* CalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 498C26CB1C1FE3BB00710612 /* CalendarTests.m */; };
 		498C26D71C1FE3BB00710612 /* CalendarUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 498C26D61C1FE3BB00710612 /* CalendarUITests.m */; };
 		498C26E61C2003AB00710612 /* WKBoundlessScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 498C26E51C2003AB00710612 /* WKBoundlessScrollView.m */; };
+		49A1E31B1C24424A00FFAA2B /* incomming_receive_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A1E31A1C24424A00FFAA2B /* incomming_receive_image.png */; };
+		49A8B3691C23E72800DC81A4 /* TipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A8B3681C23E72800DC81A4 /* TipView.m */; };
 		49EE3AC21C210CCB00B7F2FC /* WKBoundlessScrollViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EE3AC11C210CCB00B7F2FC /* WKBoundlessScrollViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +43,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		496B35E21C244E710058A683 /* DateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTools.h; sourceTree = "<group>"; };
+		496B35E31C244E710058A683 /* DateTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTools.m; sourceTree = "<group>"; };
+		496B35E51C2454550058A683 /* CellDateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellDateModel.h; sourceTree = "<group>"; };
+		496B35E61C2454550058A683 /* CellDateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellDateModel.m; sourceTree = "<group>"; };
+		497C1B701C243975001F4D71 /* DateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateView.h; sourceTree = "<group>"; };
+		497C1B711C243975001F4D71 /* DateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateView.m; sourceTree = "<group>"; };
+		497C1B731C243C02001F4D71 /* DateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateModel.h; sourceTree = "<group>"; };
+		497C1B741C243C02001F4D71 /* DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateModel.m; sourceTree = "<group>"; };
 		498C26AE1C1FE3BA00710612 /* Calendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		498C26B21C1FE3BA00710612 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		498C26B41C1FE3BA00710612 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -55,6 +69,9 @@
 		498C26D81C1FE3BB00710612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		498C26E41C2003AA00710612 /* WKBoundlessScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBoundlessScrollView.h; sourceTree = "<group>"; };
 		498C26E51C2003AB00710612 /* WKBoundlessScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBoundlessScrollView.m; sourceTree = "<group>"; };
+		49A1E31A1C24424A00FFAA2B /* incomming_receive_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = incomming_receive_image.png; sourceTree = "<group>"; };
+		49A8B3671C23E72800DC81A4 /* TipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipView.h; sourceTree = "<group>"; };
+		49A8B3681C23E72800DC81A4 /* TipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipView.m; sourceTree = "<group>"; };
 		49EE3AC01C210CCB00B7F2FC /* WKBoundlessScrollViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBoundlessScrollViewCell.h; sourceTree = "<group>"; };
 		49EE3AC11C210CCB00B7F2FC /* WKBoundlessScrollViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBoundlessScrollViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +126,17 @@
 			children = (
 				498C26B41C1FE3BA00710612 /* AppDelegate.h */,
 				498C26B51C1FE3BA00710612 /* AppDelegate.m */,
+				49A8B3671C23E72800DC81A4 /* TipView.h */,
+				49A8B3681C23E72800DC81A4 /* TipView.m */,
+				49A1E31A1C24424A00FFAA2B /* incomming_receive_image.png */,
+				497C1B701C243975001F4D71 /* DateView.h */,
+				497C1B711C243975001F4D71 /* DateView.m */,
+				496B35E21C244E710058A683 /* DateTools.h */,
+				496B35E31C244E710058A683 /* DateTools.m */,
+				497C1B731C243C02001F4D71 /* DateModel.h */,
+				497C1B741C243C02001F4D71 /* DateModel.m */,
+				496B35E51C2454550058A683 /* CellDateModel.h */,
+				496B35E61C2454550058A683 /* CellDateModel.m */,
 				498C26B71C1FE3BA00710612 /* ViewController.h */,
 				498C26B81C1FE3BA00710612 /* ViewController.m */,
 				498C26E41C2003AA00710612 /* WKBoundlessScrollView.h */,
@@ -256,6 +284,7 @@
 				498C26C11C1FE3BA00710612 /* LaunchScreen.storyboard in Resources */,
 				498C26BE1C1FE3BA00710612 /* Assets.xcassets in Resources */,
 				498C26BC1C1FE3BA00710612 /* Main.storyboard in Resources */,
+				49A1E31B1C24424A00FFAA2B /* incomming_receive_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,11 +309,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49A8B3691C23E72800DC81A4 /* TipView.m in Sources */,
 				498C26B91C1FE3BA00710612 /* ViewController.m in Sources */,
 				498C26E61C2003AB00710612 /* WKBoundlessScrollView.m in Sources */,
 				49EE3AC21C210CCB00B7F2FC /* WKBoundlessScrollViewCell.m in Sources */,
+				496B35E41C244E710058A683 /* DateTools.m in Sources */,
 				498C26B61C1FE3BA00710612 /* AppDelegate.m in Sources */,
+				497C1B751C243C02001F4D71 /* DateModel.m in Sources */,
+				496B35E71C2454550058A683 /* CellDateModel.m in Sources */,
 				498C26B31C1FE3BA00710612 /* main.m in Sources */,
+				497C1B721C243975001F4D71 /* DateView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,10 +457,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Calendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CWK.Calendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infobird.LingNiao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8b5b5c0f-87c0-4ace-9794-9b8c31dcdd2d";
 			};
 			name = Debug;
 		};
@@ -434,10 +470,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Calendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CWK.Calendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infobird.LingNiao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8b5b5c0f-87c0-4ace-9794-9b8c31dcdd2d";
 			};
 			name = Release;
 		};

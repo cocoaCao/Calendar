@@ -16,16 +16,27 @@
 
 @implementation WKBoundlessScrollViewCell (SelectResponer)
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    UIColor *color = self.backgroundColor;
-    [UIView animateWithDuration:0.2 animations:^{
-        self.backgroundColor = [UIColor lightGrayColor];
-    } completion:^(BOOL finished) {
-        self.backgroundColor = color;
-    }];
-    [self.nextResponder touchesBegan:touches withEvent:event];
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    self.backgroundColor = [UIColor whiteColor];
+    UIResponder * nextResponder = self.nextResponder;
+    [nextResponder.nextResponder touchesEnded:touches withEvent:event];
+
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
+        self.backgroundColor = [UIColor lightGrayColor];
+        [self.nextResponder touchesBegan:touches withEvent:event];
+}
+
+-(void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    self.backgroundColor = [UIColor whiteColor];
+}
+-(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    self.backgroundColor = [UIColor lightGrayColor];
+}
 
 @end
 
@@ -38,7 +49,6 @@
 @property(nonatomic,strong)NSMutableArray*  visiableCells;
 
 @property(nonatomic,strong)NSMutableDictionary* reusableTableCells;
-@property(nonatomic,assign)NSInteger deviation;
 @end
 
 @implementation WKBoundlessScrollView
@@ -47,7 +57,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _deviation = 0;
         self.contentSize = CGSizeMake(self.frame.size.width, 8000);
         _visiableCells = [[NSMutableArray alloc] init];
         _reusableTableCells = [[NSMutableDictionary alloc] initWithCapacity:2];
@@ -98,7 +107,12 @@
     CGRect visibleBounds = [self convertRect:[self bounds] toView:self.subViewContainerView];
     CGFloat minimumVisibleY = CGRectGetMinY(visibleBounds);
     CGFloat maximumVisibleY = CGRectGetMaxY(visibleBounds);
-    
+    for (WKBoundlessScrollViewCell *cell in self.visiableCells) {
+        if(fabs(cell.frame.origin.y - minimumVisibleY) < 20)
+        {
+            [self.delegateForCell boundlessScrollViewArriveTopVisible:cell.deviation];
+        }
+    }
     [self tileLabelsFromMinY:minimumVisibleY toMaxY:maximumVisibleY];
 }
 
@@ -108,51 +122,77 @@
 - (WKBoundlessScrollViewCell *)insertCell:(NSInteger)deviation
 {
     WKBoundlessScrollViewCell *cell = [self.delegateForCell boundlessScrollViewCellWithDeviation:deviation boundlessScrollView:self];
-    cell.deviation = _deviation;
-    
+    cell.deviation = deviation;
     [self.subViewContainerView addSubview:cell];
-    
     return cell;
 }
 
 - (CGFloat)placeNewViewOnBottom:(CGFloat)bottomEdge
 {
-    WKBoundlessScrollViewCell *cell = [self insertCell:_deviation];
+    NSInteger deviation = [self getMaxDeviationInVisiableCells];
+
+    WKBoundlessScrollViewCell *cell = [self insertCell:deviation];
     [self.visiableCells addObject:cell];
 
     CGRect frame = [cell frame];
     frame.origin.y = bottomEdge;
     frame.origin.x = [self.subViewContainerView bounds].size.width - frame.size.width;
-    if ([self.delegateForCell respondsToSelector:@selector(boundlessScrollViewCellHeight:deviation:)]) {
-        CGFloat height = [self.delegateForCell boundlessScrollViewCellHeight:self deviation:_deviation];
+    if ([self.delegateForCell respondsToSelector:@selector(boundlessScrollViewCellHeightWithdeviation:boundlessScrollView:)]) {
+        CGFloat height = [self.delegateForCell boundlessScrollViewCellHeightWithdeviation:deviation boundlessScrollView:self];
         frame.size.height = height;
     }
-    _deviation++;
-
-    
     [cell setFrame:frame];
-    
     return CGRectGetMaxY(frame);
 }
 
 - (CGFloat)placeNewViewOnTop:(CGFloat)topEdge
 {
-    WKBoundlessScrollViewCell *cell = [self insertCell:_deviation];
+    NSInteger deviation = [self getMinDeviationInVisiableCells];
+    WKBoundlessScrollViewCell *cell = [self insertCell:deviation];
     [self.visiableCells insertObject:cell atIndex:0]; // add leftmost label at the beginning of the array
     CGRect frame = [cell frame];
+    if ([self.delegateForCell respondsToSelector:@selector(boundlessScrollViewCellHeightWithdeviation:boundlessScrollView:)]) {
+        CGFloat height = [self.delegateForCell boundlessScrollViewCellHeightWithdeviation:deviation boundlessScrollView:self];
+        frame.size.height = height;
+        NSLog(@"height:%g",height);
+    }
     frame.origin.y = topEdge - frame.size.height;
     frame.origin.x = [self.subViewContainerView bounds].size.width - frame.size.width;
-    if ([self.delegateForCell respondsToSelector:@selector(boundlessScrollViewCellHeight:deviation:)]) {
-        CGFloat height = [self.delegateForCell boundlessScrollViewCellHeight:self deviation:_deviation];
-        frame.size.height = height;
-    }
+    
     [cell setFrame:frame];
-    _deviation--;
 
     return CGRectGetMinY(frame);
 }
 
+-(NSInteger)getMinDeviationInVisiableCells
+{
+    if (self.visiableCells.count <= 0) {
+        return 0;
+    }
+    WKBoundlessScrollViewCell *cell = (WKBoundlessScrollViewCell *)self.visiableCells[0];
+    NSInteger deviation = cell.deviation;
+    for (WKBoundlessScrollViewCell *cell in self.visiableCells) {
+        if (deviation > cell.deviation) {
+            deviation = cell.deviation;
+        }
+    }
+    return --deviation;
+}
 
+-(NSInteger)getMaxDeviationInVisiableCells
+{
+    if (self.visiableCells.count <= 0) {
+        return 0;
+    }
+    WKBoundlessScrollViewCell *cell = (WKBoundlessScrollViewCell *)self.visiableCells[0];
+    NSInteger deviation = cell.deviation;
+    for (WKBoundlessScrollViewCell *cell in self.visiableCells) {
+        if (deviation < cell.deviation) {
+            deviation = cell.deviation;
+        }
+    }
+    return ++deviation;
+}
 
 - (void)tileLabelsFromMinY:(CGFloat)minimumVisibleY toMaxY:(CGFloat)maximumVisibleY
 {
@@ -162,6 +202,7 @@
     {
         [self placeNewViewOnBottom:minimumVisibleY];
     }
+    
     
     // add labels that are missing on right side
     WKBoundlessScrollViewCell *lastCell = [self.visiableCells lastObject];
@@ -177,6 +218,7 @@
     while (topEdge > minimumVisibleY)
     {
         topEdge = [self placeNewViewOnTop:topEdge];
+
     }
     
     // remove labels that have fallen off right edge
@@ -224,19 +266,25 @@
 }
 
 
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    NSArray *array = [touches allObjects];
+    for (UITouch * touch in array) {
+        if ([touch.view isKindOfClass:[WKBoundlessScrollViewCell class]]) {
+            WKBoundlessScrollViewCell* cell = (WKBoundlessScrollViewCell *)(touch.view);
+            if ([self.delegateForCell respondsToSelector:@selector(didSelectedWithDeviation:boundlessScrollView:)]) {
+                [self.delegateForCell didSelectedWithDeviation:cell.deviation boundlessScrollView:self];
+            }
+        }
+    }
+}
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     
 //    WKBoundlessScrollViewCell *cell = (WKBoundlessScrollViewCell *)touches[0].view;
-    NSArray *array = [touches allObjects];
-    for (UITouch * touch in array) {
-        if ([touch.view isKindOfClass:[WKBoundlessScrollViewCell class]]) {
-           WKBoundlessScrollViewCell* cell = (WKBoundlessScrollViewCell *)(touch.view);
-            if ([self.delegateForCell respondsToSelector:@selector(didSelectedWithDeviation:)]) {
-                [self.delegateForCell didSelectedWithDeviation:cell.deviation];
-            }
-        }
-    }
+    
 }
 
 @end

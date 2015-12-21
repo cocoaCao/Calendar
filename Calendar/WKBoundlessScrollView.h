@@ -18,10 +18,11 @@
 -(WKBoundlessScrollViewCell *)boundlessScrollViewCellWithDeviation:(NSInteger)deviation  boundlessScrollView:(WKBoundlessScrollView *)boundlessScrollView;
 
 @optional
--(CGFloat)boundlessScrollViewCellHeight:(WKBoundlessScrollView *)boundlessScrollView  deviation:(NSInteger)deviation;
+-(CGFloat)boundlessScrollViewCellHeightWithdeviation:(NSInteger)deviation boundlessScrollView:(WKBoundlessScrollView *)boundlessScrollView  ;
 
--(void)didSelectedWithDeviation:(NSInteger)deviation;
+-(void)didSelectedWithDeviation:(NSInteger)deviation boundlessScrollView:(WKBoundlessScrollView *)boundlessScrollView;
 
+-(void)boundlessScrollViewArriveTopVisible:(NSInteger)deviation;
 
 @end
 
