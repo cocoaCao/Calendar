@@ -98,24 +98,12 @@
         cell = [[WKBoundlessScrollViewCell alloc] initWithIdentifier:cellID];
     }
     
-    
-//    
-//    if (deviation >-2 &&deviation <2) {
-//        CellDateModel *cellDateModel = [DateTools dateToCell:deviation];
-//        [cell fillDate:cellDateModel];
-//    
-//    
-//    
-//    }
-//    else
-//    {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            CellDateModel *cellDateModel = [DateTools dateToCell:deviation];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [cell fillDate:cellDateModel];
-            });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        CellDateModel *cellDateModel = [DateTools dateToCell:deviation];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [cell fillDate:cellDateModel];
         });
-//    }
+    });
     
     return cell;
 }
@@ -135,7 +123,7 @@
 -(void)boundlessScrollViewArriveTopVisible:(NSInteger)deviation
 {
     NSDateComponents *components = [DateTools getCellMonthDate:deviation];
-    NSString *string = [NSString stringWithFormat:@"%ld年%ld月",[components year],[components month]];
+    NSString *string = [NSString stringWithFormat:@"%ld年%ld月",(long)[components year],(long)[components month]];
     TipView *tipView = [self getTipLabel:string];
     if (tipView.hidden == YES) {
         tipView.hidden = NO;
@@ -150,76 +138,6 @@
         }];
     }
 }
-
-
-//
-//-(NSDictionary *)getDateModel:(NSInteger)deviation
-//{
-//    NSInteger month = _currentMonth;
-//    NSInteger year = _currentYear;
-//    NSInteger yearDeviation;
-//    NSInteger monthDeviation;
-//    if (deviation>0) {
-//        yearDeviation = deviation/12;
-//        monthDeviation = deviation%12;
-//        if (monthDeviation+_currentMonth >12 ) {
-//            month = monthDeviation + _currentMonth - 12;
-//            yearDeviation++;
-//        }
-//        else{
-//            month = month + monthDeviation;
-//        }
-//    }
-//    else
-//    {
-//        yearDeviation = deviation/12;
-//        monthDeviation = deviation%12;
-//        if (monthDeviation+_currentMonth < 0) {
-//            month = _currentMonth - monthDeviation -12;
-//            yearDeviation--;
-//        }
-//        else{
-//            month = month + monthDeviation;
-//        }
-//    }
-//    year = year+yearDeviation;
-//    NSString* string;
-//    if(month<10)
-//    {
-//        string = [NSString stringWithFormat:@"%ld0%ld01",year,month];
-//    }
-//    else
-//    {
-//        string = [NSString stringWithFormat:@"%ld%ld01",year,month];
-//    }
-//    NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
-//    inputFormatter.timeZone = [NSTimeZone systemTimeZone];
-//    [inputFormatter setDateFormat:@"yyyyMMdd"];
-//    NSDate* inputDate = [inputFormatter dateFromString:string];
-//    
-//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//    NSDateComponents *comps = [[NSDateComponents alloc] init];
-//    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday;
-//    
-//    comps = [calendar components:unitFlags fromDate:inputDate];
-//    NSDictionary *dict = @{@"year":[NSNumber numberWithInteger:[comps year]],@"month":[NSNumber numberWithInteger:[comps month]],@"day":[NSNumber numberWithInteger:[comps day]],@"weekday":[NSNumber numberWithInteger:[comps weekday]]};
-//    return dict;
-//}
-//
-//-(void)getCurrentDate
-//{
-//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//    NSDate *now;
-//    
-//    NSDateComponents *comps = [[NSDateComponents alloc] init];
-//    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday;
-//    now = [NSDate date];
-//    comps = [calendar components:unitFlags fromDate:now];
-//    _currentDay = [comps day];
-//    _currentMonth = [comps month];
-//    _currentYear = [comps year];
-//    _currentWeekday = [comps weekday];
-//}
 
 
 - (void)didReceiveMemoryWarning {
