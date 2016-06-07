@@ -154,7 +154,7 @@
     if ([self.delegateForCell respondsToSelector:@selector(boundlessScrollViewCellHeightWithdeviation:boundlessScrollView:)]) {
         CGFloat height = [self.delegateForCell boundlessScrollViewCellHeightWithdeviation:deviation boundlessScrollView:self];
         frame.size.height = height;
-        NSLog(@"height:%g",height);
+//        NSLog(@"height:%g",height);
     }
     frame.origin.y = topEdge - frame.size.height;
     frame.origin.x = [self.subViewContainerView bounds].size.width - frame.size.width;

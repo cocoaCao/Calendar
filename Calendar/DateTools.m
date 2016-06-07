@@ -76,7 +76,7 @@
     
     NSDateComponents *comps = [[NSDateComponents alloc] init];
     NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday;
-    now = [NSDate date];
+    now = [NSDate dateWithTimeIntervalSinceNow:155*24*3600];
     comps = [calendar components:unitFlags fromDate:now];
     return comps;
 }
@@ -89,39 +89,34 @@
     NSInteger year = [comps year];
     NSInteger yearDeviation;
     NSInteger monthDeviation;
-    if (deviation>0) {
+    if (deviation > 0) {
         yearDeviation = deviation/12;
-        monthDeviation = deviation%12;
-        if (monthDeviation+month >12 ) {
+        monthDeviation = deviation % 12;
+        if (monthDeviation+month > 12 ) {
             month = monthDeviation + month - 12;
             yearDeviation++;
-        }
-        else{
+        } else {
             month = month + monthDeviation;
         }
-    }
-    else
-    {
-        yearDeviation = deviation/12;
-        monthDeviation = deviation%12;
-        if (monthDeviation+month < 0) {
-            month = month - monthDeviation -12;
+    } else {
+        yearDeviation = deviation / 12;
+        monthDeviation = deviation % 12;
+        if (monthDeviation + month <= 0) {
+            month = month + monthDeviation + 12;
             yearDeviation--;
-        }
-        else{
+        } else {
             month = month + monthDeviation;
         }
     }
-    year = year+yearDeviation;
+    year = year + yearDeviation;
     NSString* string;
-    if(month<10)
+    if(month < 10)
     {
         string = [NSString stringWithFormat:@"%ld0%ld01",year,month];
-    }
-    else
-    {
+    } else {
         string = [NSString stringWithFormat:@"%ld%ld01",year,month];
     }
+    NSLog(@"%@",string);
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
     inputFormatter.timeZone = [NSTimeZone systemTimeZone];
     [inputFormatter setDateFormat:@"yyyyMMdd"];

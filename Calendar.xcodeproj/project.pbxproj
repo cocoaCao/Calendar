@@ -245,6 +245,7 @@
 				TargetAttributes = {
 					498C26AD1C1FE3BA00710612 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = DVWS6N7Q6J;
 					};
 					498C26C61C1FE3BB00710612 = {
 						CreatedOnToolsVersion = 7.2;
@@ -458,11 +459,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Calendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wkcao.Calendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b5b5c0f-87c0-4ace-9794-9b8c31dcdd2d";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -471,11 +473,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Calendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wkcao.Calendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b5b5c0f-87c0-4ace-9794-9b8c31dcdd2d";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
